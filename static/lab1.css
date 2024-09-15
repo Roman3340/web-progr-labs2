@@ -1,8 +1,57 @@
 body {
     background-color: #1f1e1e;
     color: #fff;
+    padding-left: 15px;
 }
 
-.oak {
-    padding-left: 15px;
+header {
+    background-color: #191919;
+    font-size: 30px;
+    opacity: 0.9;
+    border-radius: 20px;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+footer {
+    background-color: #191919;
+    font-size: 25px;
+    opacity: 0.9;
+    border-radius: 10px;
+    width: 100%;
+    height: 60px;
+    text-align: left;
+    padding-top: 25px;
+    padding-left: 10px;
+}
+
+p {
+    font-size: 18px;
+}
+
+img {
+    width: 400px;
+    height: auto; 
+}
+
+.telegram {
+    width: 200px;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: grey;
+    font-size: 20px;
+}
+
+.strelka {
+    width: 30px;
+    height: auto;
+}
+
+.backmenu {
+    vertical-align: 30%;
 }
