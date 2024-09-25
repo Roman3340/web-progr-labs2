@@ -1,8 +1,19 @@
+@font-face {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    src: url(fonts/Montserrat-Medium.ttf);
+}
+
 body {
     background-color: #1f1e1e;
     color: #fff;
     padding-left: 15px;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.45;
 }
+
 
 header {
     background-color: #191919;
