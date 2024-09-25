@@ -66,3 +66,9 @@ a {
 .backmenu {
     vertical-align: 30%;
 }
+
+.math {
+    font-size: 22px;
+    line-height: 1.55;
+    color: #6e6c6c;   
+}
