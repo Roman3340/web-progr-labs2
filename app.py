@@ -173,31 +173,46 @@ def a():
 def ae():
     return 'okey'
 
-
-flower_list = ['роза', 'тюльпан', 'незабудка', 'ромашка']
+all_flower_list = [
+    {'name': 'роза', 'kolvo': 5},
+    {'name': 'тюльпан', 'kolvo': 15},
+    {'name': 'гипсофила', 'kolvo': 10},
+    {'name': 'ромашка', 'kolvo': 20},
+]
+  
 
 @app.route('/lab2/flowers/<int:flower_id>')
 def flowers(flower_id):
-    if flower_id >= len(flower_list):
+    if flower_id >= len(all_flower_list):
         return "Такого цветка нет", 404
     else:
-        return 'цветок: ' + flower_list[flower_id]
-    
+        return render_template('flowers_ids.html', flower_id=flower_id, flower=all_flower_list[flower_id])
+
+
 
 @app.route('/lab2/flower/<name>')
 def add_flower(name):
-    flower_list.append(name)
-    return f'''
-<!doctype html>
-<html>
-    <body>
-    <h1>Добавлен новый цветок</h1>
-    <p>Название нового цветка: {name}</p>
-    <p>Всего цветов: {len(flower_list)}</p>
-    <p>Полный список: {flower_list}</p>
-    </body>
-</html>
-'''
+    # Проверим, есть ли уже цветок с таким именем, если нет - добавим новый
+    for flower in all_flower_list:
+        if flower['name'] == name:
+            return f"Цветок с именем {name} уже существует.", 400
+    
+    all_flower_list.append({'name': name, 'kolvo': 1})  # добавляем цветок с количеством 1 по умолчанию
+    return redirect(url_for('all_flowers'))
+
+@app.route('/lab2/flower/')
+def no_flower():
+    return "Вы не задали имя цветка", 400   
+
+@app.route('/lab2/all_flowers')
+def all_flowers():
+    return render_template('flowers.html', all_flower_list=all_flower_list)
+
+
+@app.route('/lab2/flowers/clear')
+def clear_flowers():
+    all_flower_list.clear()
+    return redirect(url_for('all_flowers'))
 
 @app.route('/lab2/example')
 def example():
@@ -219,3 +234,8 @@ def example():
 @app.route('/lab2/')
 def lab2():
     return render_template('lab2.html')
+
+@app.route('/lab2/filters')
+def filters():
+    phrase = 'О <b>сколько</b> <u>нам</u> <i>открытий чудных...'
+    return render_template('filter.html', phrase=phrase)
