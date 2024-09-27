@@ -253,3 +253,20 @@ def calc_without_numbers():
 @app.route('/lab2/calc/<int:a>/')
 def calc_with_a(a):
     return redirect(url_for('calc', a=a, b=1))
+
+
+book_list = [
+    {'author': 'Джеймс Дж.', 'name': 'Улисс', 'ganre': 'роман', 'numbOfPages': 1056},
+    {'author': 'Драйзер Т.', 'name': 'Трилогия желаний', 'ganre': 'роман', 'numbOfPages': 1152},
+    {'author': 'Лев Толстой', 'name': 'Война и мир', 'ganre': 'роман-эпопея', 'numbOfPages': 1360},
+    {'author': 'Голсуорси Дж.', 'name': 'Сага о форсайтах', 'ganre': 'роман', 'numbOfPages': 1376},
+    {'author': 'Солженицын А.', 'name': 'Архипелаг ГУЛАГ', 'ganre': 'опыт художественного исследования', 'numbOfPages': 1424},
+    {'author': 'Палиссер Ч.', 'name': 'Квинканкс', 'ganre': 'роман', 'numbOfPages': 1472},
+    {'author': 'Манн Т.', 'name': 'Иосиф и его братья', 'ganre': 'роман', 'numbOfPages': 1492},
+    {'author': 'Пруст М.', 'name': 'В поисках утраченного времени', 'ganre': 'роман', 'numbOfPages': 3031},
+    {'author': 'Кнаусгор К.', 'name': 'Моя борьба ', 'ganre': 'автобиография', 'numbOfPages': 3600}
+]
+
+@app.route('/lab2/books')
+def books():
+    return render_template('books.html', book_list=book_list)
