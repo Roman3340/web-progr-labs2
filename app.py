@@ -270,3 +270,16 @@ book_list = [
 @app.route('/lab2/books')
 def books():
     return render_template('books.html', book_list=book_list)
+
+
+@app.route('/lab2/mops')
+def mops():
+    mops_list = [
+    {'title': 'Мопс-лягушонок', 'photo': url_for('static', filename='mops1.jpg'), 'description': 'Это мопс, или это лягушонок? Совсем не понимаю, вроде хрюкает, лягушки же не хрюкают... Но вроде и зелененький, как лягушонок...'},
+    {'title': 'Голодный мопс', 'photo': url_for('static', filename='mops2.jpg'), 'description': 'Этого мопса покормили 3 минуты назад, и он снова хочет есть, что за дела? А ну слезь со стола, эта печенька не для тебя!'},
+    {'title': 'Мопс-невдупленыш', 'photo': url_for('static', filename='mops3.jpg'), 'description': 'Он ещё совсем маленький, и совсем не понимает кто он и что он, ему лишь бы поесть и поспать. Боже, как я его понимаю...'},
+    {'title': 'Странные мопсы', 'photo': url_for('static', filename='mops4.jpg'), 'description': 'А вы заметили вообще, что это и не мопсы совсем, это же варежки! Вот это технологии пошли конечно, такое мог придумать только русский человек, у других бы смекалочки не хватило!'},
+    {'title': 'Чилльный мопс', 'photo': url_for('static', filename='mops5.jpg'), 'description': 'Ну тут и так все понятно, мопс на выходных, добавить нечего.'},
+    {'title': 'Соблазнительный мопс', 'photo': url_for('static', filename='mops6.jpg'), 'description': 'Вы только посмотрите на эти горячие булочки, признайтесь, захотелось??? Мне вот да.'}
+]
+    return render_template('mops.html', mops_list=mops_list)
