@@ -175,10 +175,10 @@ def ae():
     return 'okey'
 
 all_flower_list = [
-    {'name': 'роза', 'kolvo': 5},
-    {'name': 'тюльпан', 'kolvo': 15},
-    {'name': 'гипсофила', 'kolvo': 10},
-    {'name': 'ромашка', 'kolvo': 20},
+    {'name': 'роза', 'kolvo': 5, 'price': 120},
+    {'name': 'тюльпан', 'kolvo': 15, 'price': 70},
+    {'name': 'гипсофила', 'kolvo': 10, 'price': 100},
+    {'name': 'ромашка', 'kolvo': 20, 'price': 80},
 ]
   
 
@@ -193,13 +193,26 @@ def flowers(flower_id):
 
 @app.route('/lab2/flower/<name>')
 def add_flower(name):
-    # Проверим, есть ли уже цветок с таким именем, если нет - добавим новый
     for flower in all_flower_list:
         if flower['name'] == name:
-            return f"Цветок с именем {name} уже существует.", 400
+            flower['kolvo'] += 1 
+            return redirect(url_for('all_flowers'))
     
-    all_flower_list.append({'name': name, 'kolvo': 1})  # добавляем цветок с количеством 1 по умолчанию
+    all_flower_list.append({'name': name, 'kolvo': 1, 'price': 100})  
     return redirect(url_for('all_flowers'))
+
+@app.route('/lab2/del_flower/<name>')
+def del_flower(name):
+    for flower in all_flower_list:
+        if flower['name'] == name:
+            all_flower_list.remove(flower)  # удаляем цветок
+            return redirect(url_for('all_flowers'))
+    
+    return f"Цветок с именем {name} не найден.", 404  
+
+@app.route('/lab2/del_flower/')
+def no_del_flower():
+    return "Вы не задали имя цветка", 400   
 
 @app.route('/lab2/flower/')
 def no_flower():
