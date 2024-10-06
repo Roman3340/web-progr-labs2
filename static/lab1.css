@@ -89,3 +89,33 @@ a {
     height: 40px;
     font-size: 15px;
 }
+
+input {
+    background-color: #1f1e1e;
+    border: 3px solid rgb(78, 75, 75);
+    border-radius: 30px;
+    width: 200px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+input::placeholder {
+    color: #969191;
+    font-size: 15px;
+}
+
+select {
+    background-color: #1f1e1e;
+    color: #969191;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 25px;
+    padding: 0 15px;
+}
+
+option {
+    color: #969191;
+}

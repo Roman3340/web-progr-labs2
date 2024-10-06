@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+
+{#основной контент: #}
+{% block main %}
+
+    {% if user %}
+
+    <h1>Привет, {{user}}</h1>
+    <h2>Добро пожаловать на наш сайт!</h2>
+    
+    <div>Ваш возраст: {{age}}</div>
+    <div>Ваш пол: {{sex}}</div>
+
+    <div>
+        <a href="/lab3/form1">Заново</a>
+    </div>
+
+    {% else %}
+
+
+    <h1>Пользователь</h1>
+    
+    <form>
+        <label for="name" style="padding-left: 7px;">
+            Ваше имя:
+        </label>
+        <div>
+            <input type="text" placeholder="Введите ваше имя" name="user" id="name">
+        </div>
+        <br>
+
+        <label for="age" style="padding-left: 7px;">
+            Ваш возраст:
+        </label>
+        <div>
+            <input type="text" placeholder="Введите ваш возраст" name="age" id="age">
+        </div>
+        <br>
+
+        <label for="gender" style="padding-left: 7px;">
+            Ваш пол:
+        </label>
+        <div>
+            <select name="sex" id="gender">
+                <option value="male">Мужчина</option>
+                <option value="female">Женщина</option>
+            </select>
+        </div>
+        <br>
+
+        <div>
+            <button class="flowerButton">Отправить</button>
+        </div>
+    </form>
+    <br>
+
+    {% endif %}
+{% endblock %}
