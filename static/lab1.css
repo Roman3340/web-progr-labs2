@@ -90,7 +90,7 @@ a {
     font-size: 15px;
 }
 
-input {
+.inputF {
     background-color: #1f1e1e;
     border: 3px solid rgb(78, 75, 75);
     border-radius: 30px;
@@ -101,7 +101,7 @@ input {
     padding: 0 20px;
 }
 
-input::placeholder {
+.inputF::placeholder {
     color: #969191;
     font-size: 15px;
 }
@@ -122,4 +122,40 @@ option {
 
 .error {
     color: rgb(173, 2, 2);
+}
+
+.button {
+    background-color: #423c3c;
+    color: #fff;
+    border: 0;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #665d5d;
+}
+
+.drinkR {
+    background-color: black;
+}
+
+.inputC {
+    background-color: #1f1e1e;
+    border: 3px solid rgb(78, 75, 75);
+    border-radius: 30px;
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 20px;
+    margin-bottom: 15px;
+}
+
+.inputC::placeholder {
+    color: #969191;
+    font-size: 15px;
 }

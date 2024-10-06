@@ -30,7 +30,7 @@
             Ваше имя:
         </label>
         <div>
-            <input type="text" placeholder="Введите ваше имя" name="user" id="name" value="{{user or ''}}">
+            <input class="inputF" type="text" placeholder="Введите ваше имя" name="user" id="name" value="{{user or ''}}">
             <span class="error">{{errors.user}}</span>
         </div>
         <br>
@@ -39,7 +39,7 @@
             Ваш возраст:
         </label>
         <div>
-            <input type="text" placeholder="Введите ваш возраст" name="age" id="age" value="{{age or ''}}">
+            <input class="inputF" type="text" placeholder="Введите ваш возраст" name="age" id="age" value="{{age or ''}}">
             <span class="error">{{errors.age}}</span>
         </div>
         <br>
@@ -61,5 +61,11 @@
     </form>
     <br>
 
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
     {% endif %}
 {% endblock %}

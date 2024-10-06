@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+{#основной контент: #}
+{% block main %}
+    <h1>Заказ напитка</h1>
+
+    <form action="/lab3/pay">
+        <div>Напиток:</div>
+        <label>
+            <input class="drinkR" type="radio" value="cofee" name="drink" checked>кофе
+        </label>
+        <label>
+            <input class="drinkR" type="radio" value="black-tea" name="drink">черный чай
+        </label>
+        <label>
+            <input class="drinkR" type="radio" value="green-tea" name="drink">зеленый чай
+        </label>
+        <br><br>
+        <div>Добавки:</div>
+        <label>
+            <input type="checkbox" name="milk">молоко + 30₽
+        </label>
+        <label>
+            <input type="checkbox" name="sugar">сахар + 10₽
+        </label>
+        <br><br>
+        <div>
+            <button class="button">Заказать</button>
+        </div>
+
+    </form>
+    <br>
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+
+{#основной контент: #}
+{% block main %}
+
+    <h1>Оплата</h1>
+
+    <div>Сумма к оплате: {{price}} ₽</div> <br>
+    
+    <form action="/lab3/success">
+        <label for="numberCard" style="padding-left: 7px;">
+            Номер банковской карты: <br>
+            <input class="inputC" type="text" name="card" pattern="\d{16}" placeholder="5516 3214 9861 0012">
+        </label>
+        <br>
+
+        <label for="numberCard" style="padding-left: 7px;">
+            Имя держателя карты: <br>
+            <input class="inputC" type="text" name="name" placeholder="CHUKAEV ROMAN">
+        </label>
+        <br>
+
+        <label for="numberCard" style="padding-left: 7px;">
+            Номер CVV: <br>
+            <input class="inputC" type="text" name="cvv" pattern="\d{3}" placeholder="***">
+        </label>
+        <br>
+
+        <div>
+            <button class="button">Оплатить</button>
+            <input class="button" type="reset" value="Обновить"> <br>
+            <a style="margin-left: 48px;" href="/lab3/order">Отказаться</a>
+        </div>
+        <div>
+            <input type="hidden" value="{{price}}" name="finalPrice">
+        </div>
+        <br><br>
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}
