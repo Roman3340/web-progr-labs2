@@ -8,7 +8,7 @@
 {#основной контент: #}
 {% block main %}
 
-    {% if user %}
+    {% if user and age %}
 
     <h1>Привет, {{user}}</h1>
     <h2>Добро пожаловать на наш сайт!</h2>
@@ -30,7 +30,8 @@
             Ваше имя:
         </label>
         <div>
-            <input type="text" placeholder="Введите ваше имя" name="user" id="name">
+            <input type="text" placeholder="Введите ваше имя" name="user" id="name" value="{{user or ''}}">
+            <span class="error">{{errors.user}}</span>
         </div>
         <br>
 
@@ -38,7 +39,8 @@
             Ваш возраст:
         </label>
         <div>
-            <input type="text" placeholder="Введите ваш возраст" name="age" id="age">
+            <input type="text" placeholder="Введите ваш возраст" name="age" id="age" value="{{age or ''}}">
+            <span class="error">{{errors.age}}</span>
         </div>
         <br>
 
