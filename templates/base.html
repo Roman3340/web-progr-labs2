@@ -6,6 +6,13 @@
     <title>Роман Чукаев. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='lab1.css') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body{
+            {% if request.cookies.get('color') %}
+                color: {{request.cookies.get('color') }};
+            {% endif %}
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -13,12 +20,6 @@
     </header>
     
     <main>
-        <div>
-            <a href="http://127.0.0.1:5000/lab2">
-                <img src="{{ url_for('static', filename='strelka.png') }}" class='strelka'>
-            </a>
-            <a href="http://127.0.0.1:5000/lab2" class='backmenu'>Вернуться в меню</a>
-        </div>
         {% block main %}{% endblock %}
     </main>
 
