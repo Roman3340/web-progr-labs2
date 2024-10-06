@@ -1,9 +1,11 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 from lab1 import lab1
 from lab2 import lab2
+from lab3 import lab3
 app = Flask(__name__)
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
+app.register_blueprint(lab3)
 
 @app.route("/")
 @app.route("/index")
@@ -22,13 +24,14 @@ def menu():
     </head>
     <body>
         <header>
-            НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
+            НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных.
         </header>
 
         <h2>web-сервер на flask</h2>
         <ul>
             <li><a href="http://127.0.0.1:5000/lab1">Первая лабораторная</a></li>
             <li><a href="http://127.0.0.1:5000/lab2">Вторая лабораторная</a></li>
+            <li><a href="http://127.0.0.1:5000/lab3">Третья лабораторная</a></li>
         </ul>
 
         <footer>
@@ -40,7 +43,7 @@ def menu():
 
 
 @app.errorhandler(404)
-def not_found(err):
+def not_found_404(err):
     return '''
 <!doctype html>
 <html>
@@ -64,7 +67,7 @@ def not_found(err):
 
 
 @app.errorhandler(500)
-def not_found(err):
+def not_found_500(err):
     return '''
 <!doctype html>
 <html>

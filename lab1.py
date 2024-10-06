@@ -2,33 +2,6 @@ from flask import Blueprint, redirect, url_for
 lab1 = Blueprint('lab1' ,__name__)
 
 
-@lab1.route('/menu')
-def menu():
-    return '''
-<!doctype html>
-<html>
-    <head>
-        <title>НГТУ, ФБ, Лабораторные работы</title>
-        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
-    </head>
-    <body>
-        <header>
-            НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
-        </header>
-
-        <h2>web-сервер на flask</h2>
-        <ul>
-            <li><a href="http://127.0.0.1:5000/lab1">Первая лабораторная</a></li>
-            <li><a href="http://127.0.0.1:5000/lab2">Вторая лабораторная</a></li>
-        </ul>
-
-        <footer>
-            &copy; Чукаев Роман, ФБИ-24, 3 курс, 2024
-        </footer>
-    </body>
-</html>
-'''
-
 @lab1.route("/lab1")
 def lab():
     return '''
@@ -74,6 +47,7 @@ def lab():
 </html>
 '''
 
+
 @lab1.route('/lab1/oak')
 def oak():
     return '''
@@ -93,6 +67,7 @@ def oak():
 </html>
 '''
 
+
 @lab1.route('/lab1/student')
 def student():
     return '''
@@ -111,6 +86,7 @@ def student():
     </body>
 </html>
 '''
+
 
 @lab1.route('/lab1/python')
 def python():
@@ -137,6 +113,7 @@ def python():
 </html>
 '''
 
+
 @lab1.route('/lab1/telegram')
 def telegram():
     return '''
@@ -161,3 +138,4 @@ def telegram():
     </body>
 </html>
 '''
+
