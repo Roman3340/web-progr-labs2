@@ -9,10 +9,10 @@
     <h1>Список всех цветов</h1>
     <ul>
         {% for flower in all_flower_list %}
-            <li>{{ flower.name }}: {{ flower.kolvo }} шт - {{flower.price}} &#x20bd - <a href="{{ url_for('del_flower', name=flower.name) }}">удалить</a></li>
+            <li>{{ flower.name }}: {{ flower.kolvo }} шт - {{flower.price}} &#x20bd - <a href="{{ url_for('lab2.del_flower', name=flower.name) }}">удалить</a></li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('clear_flowers') }}">Очистить список цветов</a><br>
+    <a href="{{ url_for('lab2.clear_flowers') }}">Очистить список цветов</a><br>
     <!-- <p>Добавить цветок: <input type="text" class="flowerInput" placeholder="Название цветка"> <button class="flowerButton"> добавить</button></p> -->
     <p>Добавить цветок:</p>
     <input type="text" id="flowerInput" class="flowerInput" placeholder="Название цветка">
@@ -23,7 +23,7 @@
         var flowerName = document.getElementById('flowerInput').value;
         if (flowerName) {
             // Перенаправление на URL с параметром названия цветка для добавления
-            window.location.href = "{{ url_for('add_flower', name='') }}" + flowerName;
+            window.location.href = "{{ url_for('lab2.add_flower', name='') }}" + flowerName;
         } else {
             alert('Введите название цветка');
         }

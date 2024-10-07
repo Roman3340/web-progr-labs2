@@ -56,7 +56,7 @@ def oak():
     <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     <body>
         <h1 style='padding-left: 15px'>Дуб</h1>
-        <img src="''' + url_for('static', filename='oak.jpg') + '''" class='oak'>
+        <img src="''' + url_for('static', filename='lab1/oak.jpg') + '''" class='oak'>
         <div>
             <a href="http://127.0.0.1:5000/lab1">
                 <img src="''' + url_for('static', filename='strelka.png') + '''" class='strelka'>
@@ -76,7 +76,7 @@ def student():
     <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     <body>
         <h1>Чукаев Роман Константинович</h1>
-        <img src="''' + url_for('static', filename='nstu.png') + '''" class='nstu'>
+        <img src="''' + url_for('static', filename='lab1/nstu.png') + '''" class='nstu'>
         <div>
             <a href="http://127.0.0.1:5000/lab1">
                 <img src="''' + url_for('static', filename='strelka.png') + '''" class='strelka'>
@@ -102,7 +102,7 @@ def python():
         <p>
             У Python большая библиотека сторонних модулей и инструментов, что делает его мощным инструментом. Наличие активного сообщества разработчиков позволяет постоянно поддерживать и обновлять язык, предоставлять достаточный объем обучающих материалов, документацию и форумы для программистов с любым уровнем знаний.
         </p>
-        <img src="''' + url_for('static', filename='python.png') + '''" class='python'>
+        <img src="''' + url_for('static', filename='lab1/python.png') + '''" class='python'>
         <div>
             <a href="http://127.0.0.1:5000/lab1">
                 <img src="''' + url_for('static', filename='strelka.png') + '''" class='strelka'>
@@ -128,7 +128,7 @@ def telegram():
         <p>
            Павел Дуров, активно выступающий за свободу интернета, утверждает, что Telegram имеет высокую степень конфиденциальности данных. По оценкам СМИ, такая политика конфиденциальности привлекла в Telegram террористов, экстремистов, мошенников, торговцев оружием и наркотиками. По данным Surfshark, всего Telegram временно или бессрочно блокировали в 31 стране[13]. Расследование, связанное с организованной преступностью в Telegram стало причиной уголовного преследования Павла Дурова во Франции в 2024 году.
         </p>
-        <img src="''' + url_for('static', filename='telegram.png') + '''" class='telegram'>
+        <img src="''' + url_for('static', filename='lab1/telegram.png') + '''" class='telegram'>
         <div>
             <a href="http://127.0.0.1:5000/lab1">
                 <img src="''' + url_for('static', filename='strelka.png') + '''" class='strelka'>
