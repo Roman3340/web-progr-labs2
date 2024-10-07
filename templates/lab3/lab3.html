@@ -7,9 +7,32 @@
 {#основной контент: #}
 {% block main %}
     <h1>Формы, cookie</h1>
+
+    {% if name %}
     <div>
         Привет, <span style="color: {{name_color}}">{{name}}</span>!
     </div>
+
+    {% else: %}
+    <div>
+        Привет, <span style="color: {{name_color}}">Аноним</span>!
+    </div>
+
+    {% endif %}
+
+    {% if age %}
+    <div>
+        Твой возраст: <span>{{age}}</span>!
+    </div>
+
+    {% else: %}
+
+    <div>
+        Возраст неизвестен
+    </div>
+
+    {% endif %}
+
     <div>Список сделанных страниц:</div>
     <ol>
         <li>
