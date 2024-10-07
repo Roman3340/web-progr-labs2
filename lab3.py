@@ -227,3 +227,19 @@ def ticket():
     }
 
     return render_template('/lab3/ticket.html', ticket=ticket_data)
+
+@lab3.route('/lab3/clearCookie')
+def clear_cookie():
+    # Список куки, которые нужно удалить
+    cookies_to_clear = ['bgcolor', 'color', 'fontStyle']  # Замените на нужные имена куки
+
+    # Создаем response объект
+    response = make_response(redirect('/lab3'))  # Перенаправляем пользователя обратно на /lab3/settings
+    
+    # Перебираем куки, которые хотим удалить
+    for cookie in cookies_to_clear:
+        if cookie in request.cookies:
+            # Очищаем куку, устанавливая ей пустое значение и время истечения в прошлом
+            response.set_cookie(cookie, '', expires=0)
+    
+    return response
