@@ -73,14 +73,35 @@ def success_pay():
 @lab3.route('/lab3/settings')
 def settings():
     color = request.args.get('color')
-    if color:
+    bgcolor = request.args.get('bgcolor')
+    fontSyze = request.args.get('fontSyze')
+    fontStyle = request.args.get('fontStyle')
+
+    # Проверяем, есть ли запрос на изменение параметров
+    if color or bgcolor or fontSyze or fontStyle:
         resp = make_response(redirect('/lab3/settings'))
-        resp.set_cookie('color', color)
+        if color:
+            resp.set_cookie('color', color)
+        if bgcolor:
+            resp.set_cookie('bgcolor', bgcolor)
+        if fontSyze:
+            resp.set_cookie('fontSyze', fontSyze)
+        if fontStyle:
+            resp.set_cookie('fontStyle', fontStyle)
         return resp
+
+    # Если параметры не переданы, просто возвращаем страницу
+    return render_template('/lab3/settings.html')
     
-    color = request.cookies.get('color')
-    resp = make_response(render_template('lab3/settings.html', color=color))
-    return resp
+    
+    # if color:
+    #     resp = make_response(redirect('/lab3/settings'))
+    #     resp.set_cookie('color', color)
+    #     return resp
+    
+    # color = request.cookies.get('color')
+    # resp = make_response(render_template('lab3/settings.html', color=color))
+    # return resp
 
 
 

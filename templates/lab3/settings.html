@@ -14,6 +14,25 @@
         </div>
         <br>
         <div>
+            <label for="bgcolor">Выберите цвет фона:</label>
+            <input type="color" id="bgcolor" name="bgcolor" value="{{ bgcolor or '' }}">
+        </div>
+        <br>
+        <div>
+            <label for="fontSyze">Выберите размер шрифта:</label>
+            <input type="text" id="fontSyze" name="fontSyze" value="{{ fontSyze or '' }}">
+        </div>
+        <br>
+        <div>
+            <label for="fontStyle">Выберите стиль шрифта:</label>
+                <select name="fontStyle" id="fontStyle">
+                    <option value="normal" {% if fontStyle == 'normal' %}selected{% endif %}>normal</option>
+                    <option value="italic" {% if fontStyle == 'italic' %}selected{% endif %}>italic</option>
+                    <option value="oblique" {% if fontStyle == 'oblique' %}selected{% endif %}>oblique</option>
+                </select>
+        </div>
+        <br>
+        <div>
             <button class="button" type="submit">ОК</button>
         </div>
     </form>
