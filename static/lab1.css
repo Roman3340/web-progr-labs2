@@ -159,3 +159,15 @@ option {
     color: #969191;
     font-size: 15px;
 }
+
+.dateRZHD {
+    background-color: #1f1e1e;
+    border: 3px solid rgb(78, 75, 75);
+    border-radius: 30px;
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 20px;
+    margin-bottom: 15px;
+}

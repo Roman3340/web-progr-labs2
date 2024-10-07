@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+{#основной контент: #}
+{% block main %}
+    <h1>Покупка билета</h1>
+
+    <form action="/lab3/formRZHD">
+        <label>
+            <input style="width: 170px;" class="inputC" type="text" placeholder="ФИО пассажира" name="fio" value="{{ fio }}">
+            <span class="error">{{errors.fio}}</span>
+        </label>
+        <br>
+        <label>
+            <input style="width: 170px;" type="number" class="inputC" placeholder="Возраст" name="age" value="{{ age }}">
+            <span class="error">{{errors.age}}</span>
+        </label>
+        <br>
+        <label>
+            Полка:
+            <select style="width: 175px; margin-bottom: 15px" name="bed">
+                <option value="bottomBed" {% if bed == 'bottomBed' %}selected{% endif %}>Нижняя</option>
+                <option value="headerBed" {% if bed == 'headerBed' %}selected{% endif %}>Верхняя</option>
+                <option value="bottomSideBed" {% if bed == 'bottomSideBed' %}selected{% endif %}>Нижняя боковая</option>
+                <option value="headerSideBed" {% if bed == 'headerSideBed' %}selected{% endif %}>Верхняя боковая</option>
+            </select>
+            <span class="error">{{errors.bed}}</span>
+        </label>
+        <br>
+        <label>
+            Откуда:
+            <select style="width: 180px; margin-bottom: 15px; margin-right: 10px" name="from">
+                <option value="nsk" {% if from_city == 'nsk' %}selected{% endif %} selected>Новосибирск</option>
+                <option value="msk" {% if from_city == 'msk' %}selected{% endif %}>Москва</option>
+                <option value="spb" {% if from_city == 'spb' %}selected{% endif %}>Санкт-Петербург</option>
+                <option value="kzn" {% if from_city == 'kzn' %}selected{% endif %}>Казань</option>
+            </select>
+            <span class="error">{{errors.from}}</span>
+        </label>
+        <label>
+            Куда:
+            <select style="width: 180px; margin-bottom: 15px" name="whereTo">
+                <option value="nsk" {% if where_to == 'nsk' %}selected{% endif %}>Новосибирск</option>
+                <option value="msk" {% if where_to == 'msk' %}selected{% endif %} selected>Москва</option>
+                <option value="spb" {% if where_to == 'spb' %}selected{% endif %}>Санкт-Петербург</option>
+                <option value="kzn" {% if where_to == 'kzn' %}selected{% endif %}>Казань</option>
+            </select>
+            <span class="error">{{errors.whereTo}}</span>
+        </label>
+        <br>
+        <label>
+            Дата поездки:
+            <input class="dateRZHD" type="date" name="date" value="{{ date }}">
+            <span class="error">{{errors.date}}</span>
+        </label>
+        <br>
+        <div>
+            Дополнительные услуги:
+        </div>
+        <label>
+            <input type="checkbox" name="dop" value="linen" {% if 'linen' in dop %}checked{% endif %}> Бельё
+        </label>
+        <label>
+            <input type="checkbox" name="dop" value="baggage" {% if 'baggage' in dop %}checked{% endif %}> Багаж
+        </label>
+        <label>
+            <input type="checkbox" name="dop" value="insurance" {% if 'insurance' in dop %}checked{% endif %}> Страховка
+        </label>
+        <br><br>
+        <button class="button">Купить</button>
+    </form>
+
+  
+    
+    </form>
+    <br>
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}

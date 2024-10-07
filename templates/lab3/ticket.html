@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+{# основной контент: #}
+{% block main %}
+    <h1>Ваш билет</h1>
+    <p>ФИО: {{ ticket.fio }}</p>
+    <p>Возраст: {{ ticket.age }}</p>
+    <p>Тип билета: {{ ticket.ticket_type }}</p>
+    <p>Полка: {{ ticket.bed }}</p>
+    <p>Откуда: {{ ticket.from_city }}</p>
+    <p>Куда: {{ ticket.where_to }}</p>
+    <p>Дата поездки: {{ ticket.date }}</p>
+    <p>Дополнительные услуги: {{ ', '.join(ticket.dop) }}</p>
+    <p>Стоимость: {{ ticket.price }} руб.</p>
+
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}
