@@ -243,3 +243,54 @@ def clear_cookie():
             response.set_cookie(cookie, '', expires=0)
     
     return response
+
+
+# Список автомобилей (название, цена, марка, цвет)
+cars = [
+    {'name': 'Tesla Model 3', 'price': 3500000, 'brand': 'Tesla', 'color': 'Красный'},
+    {'name': 'BMW 3 Series', 'price': 4000000, 'brand': 'BMW', 'color': 'Черный'},
+    {'name': 'Audi A4', 'price': 3700000, 'brand': 'Audi', 'color': 'Белый'},
+    {'name': 'Mercedes-Benz C-Class', 'price': 4200000, 'brand': 'Mercedes-Benz', 'color': 'Синий'},
+    {'name': 'Toyota Camry', 'price': 2400000, 'brand': 'Toyota', 'color': 'Серебристый'},
+    {'name': 'Honda Accord', 'price': 2300000, 'brand': 'Honda', 'color': 'Черный'},
+    {'name': 'Ford Mustang', 'price': 2700000, 'brand': 'Ford', 'color': 'Желтый'},
+    {'name': 'Chevrolet Camaro', 'price': 2600000, 'brand': 'Chevrolet', 'color': 'Красный'},
+    {'name': 'Volkswagen Passat', 'price': 3000000, 'brand': 'Volkswagen', 'color': 'Зеленый'},
+    {'name': 'Kia Optima', 'price': 2200000, 'brand': 'Kia', 'color': 'Синий'},
+    {'name': 'Hyundai Sonata', 'price': 2100000, 'brand': 'Hyundai', 'color': 'Белый'},
+    {'name': 'Mazda 6', 'price': 2500000, 'brand': 'Mazda', 'color': 'Красный'},
+    {'name': 'Nissan Altima', 'price': 2400000, 'brand': 'Nissan', 'color': 'Черный'},
+    {'name': 'Subaru Legacy', 'price': 2200000, 'brand': 'Subaru', 'color': 'Серебристый'},
+    {'name': 'Lexus ES', 'price': 3900000, 'brand': 'Lexus', 'color': 'Белый'},
+    {'name': 'Jaguar XE', 'price': 4500000, 'brand': 'Jaguar', 'color': 'Синий'},
+    {'name': 'Volvo S60', 'price': 3800000, 'brand': 'Volvo', 'color': 'Черный'},
+    {'name': 'Porsche Panamera', 'price': 8700000, 'brand': 'Porsche', 'color': 'Красный'},
+    {'name': 'Alfa Romeo Giulia', 'price': 4300000, 'brand': 'Alfa Romeo', 'color': 'Белый'},
+    {'name': 'Cadillac CT5', 'price': 4700000, 'brand': 'Cadillac', 'color': 'Черный'}
+]
+
+# Главная страница с формой поиска
+@lab3.route('/lab3/search')
+def search():
+    # Проверяем, есть ли параметры в запросе
+    min_price = request.args.get('min_price')
+    max_price = request.args.get('max_price')
+
+    # Если параметры не заданы, возвращаем просто форму поиска
+    if min_price is None and max_price is None:
+        return render_template('/lab3/search.html')
+
+    # Если параметры заданы, конвертируем их в числа и фильтруем список
+    min_price = float(min_price) if min_price else 0
+    max_price = float(max_price) if max_price else float('inf')
+
+    # Фильтруем автомобили по диапазону цен
+    filtered_cars = [car for car in cars if min_price <= car['price'] <= max_price]
+
+    # Отображаем результат поиска
+    return render_template('/lab3/results.html', cars=filtered_cars, min_price=min_price, max_price=max_price)
+
+# Страница результатов
+@lab3.route('/lab3/results')
+def results():
+    return render_template('lab3/results.html')

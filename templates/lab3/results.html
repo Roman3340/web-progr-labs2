@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+{# основной контент: #}
+{% block main %}
+  
+    <h1>Результаты поиска</h1>
+
+    {% if cars %}
+        <p>Автомобили с ценой от {{ min_price }} до {{ max_price }} рублей:</p>
+        <ul>
+        {% for car in cars %}
+            <li>
+                <strong>{{ car.name }}</strong><br>
+                Цена: {{ car.price }} руб.<br>
+                Марка: {{ car.brand }}<br>
+                Цвет: {{ car.color }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Автомобили в данном диапазоне цен не найдены.</p>
+    {% endif %}
+
+    <br>
+    <a href="/lab3/search">Вернуться к поиску</a>
+    
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}

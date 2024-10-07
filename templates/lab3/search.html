@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{# номер лабораторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+
+{# основной контент: #}
+{% block main %}
+  
+    <h1>Поиск автомобилей</h1>
+    <form action="/lab3/search">
+        <label for="min_price">Мин. цена (руб.):</label>
+        <input class="inputC" type="text" id="min_price" name="min_price" placeholder="0"><br><br>
+
+        <label for="max_price">Макс. цена (руб.):</label>
+        <input class="inputC" type="text" id="max_price" name="max_price" placeholder="10000000"><br><br>
+
+        <button  class='button' type="submit">Искать</button>
+        </form>
+        <br>
+    <div>
+        <a href="http://127.0.0.1:5000/menu">
+            <img src="../static/strelka.png" class='strelka'>
+        </a>
+        <a href="http://127.0.0.1:5000/menu" class='backmenu'>Вернуться в главное меню</a>
+    </div>
+{% endblock %}
