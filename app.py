@@ -46,19 +46,19 @@ def menu():
 
 
 @app.route('/lab1/')
-def lab1():
+def lab_1():
     return render_template('lab1')
 
 @app.route('/lab2/')
-def lab2():
+def lab_2():
     return render_template('lab2/lab2.html')
 
 @app.route('/lab3/')
-def lab3():
+def lab_3():
     return render_template('lab3/lab3.html')
 
 @app.route('/lab4/')
-def lab4():
+def lab_4():
     return render_template('lab4/lab4.html')
 
 
