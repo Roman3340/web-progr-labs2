@@ -144,3 +144,7 @@ def login():
     return render_template('/lab4/login.html', error=error, authorized=False)
     
 
+@lab4.route('/lab4/logout', methods=['POST'])
+def logout():
+    session.pop('login', None)
+    return redirect('/lab4/login')
