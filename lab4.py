@@ -83,7 +83,7 @@ def exp_form():
 
 
 @lab4.route('/lab4/exp', methods = ['POST'])
-def sub():
+def exp():
     x1 = request.form.get('x1')
     x2 = request.form.get('x2')
     if x1 == '' or x2 == '' or x1 == 0 and x2 == 0:
