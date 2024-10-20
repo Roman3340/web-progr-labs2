@@ -135,6 +135,10 @@ option {
     cursor: pointer;
 }
 
+.button.del {
+    width: 30px;
+}
+
 .button:hover {
     background-color: #665d5d;
 }
