@@ -92,5 +92,5 @@ def exp():
         return render_template('lab4/exp.html', error='Поля не должны иметь нулевых значенией')
     x1 = int(x1)
     x2 = int(x2)
-    result = x1 - x2
+    result = x1 ** x2
     return render_template('lab4/exp.html', x1=x1, x2=x2, result=result)
