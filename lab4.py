@@ -87,7 +87,9 @@ def sub():
     x1 = request.form.get('x1')
     x2 = request.form.get('x2')
     if x1 == '' or x2 == '' or x1 == 0 and x2 == 0:
-        return render_template('lab4/exp.html', error='Оба поля должны быть заполнены и не иметь нулевых значений')
+        return render_template('lab4/exp.html', error='Оба поля должны быть заполнены')
+    if x1 == 0 or x2 == 0:
+        return render_template('lab4/exp.html', error='Поля не должны иметь нулевых значенией')
     x1 = int(x1)
     x2 = int(x2)
     result = x1 - x2
