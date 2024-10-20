@@ -45,9 +45,9 @@ def menu():
 '''
 
 
-# @app.route('/lab1/')
-# def lab1():
-#     return render_template('lab1')
+@app.route('/lab1/')
+def lab1():
+    return render_template('lab1')
 
 @app.route('/lab2/')
 def lab2():
