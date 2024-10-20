@@ -94,3 +94,11 @@ def exp():
     x2 = int(x2)
     result = x1 ** x2
     return render_template('lab4/exp.html', x1=x1, x2=x2, result=result)
+
+
+tree_count = 0
+
+@lab4.route('/lab4/tree')
+def tree():
+    global tree_count
+    return render_template('lab4/tree.html', tree_count=tree_count)
