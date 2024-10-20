@@ -3,12 +3,12 @@
 {% block lab %}Деление чисел{% endblock %}
 
 {% block main %}
-    {{% if error %}}
+    {% if error %}
         {{ error }}
-    {{% else %}}
+    {% else %}
     <h1>Деление чисел</h1>
     {{ x1 }} / {{ x2 }} = {{ result }}
-    {{% endif %}}
+    {% endif %}
 
     <br>
 
