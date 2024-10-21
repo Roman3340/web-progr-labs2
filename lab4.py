@@ -130,6 +130,8 @@ def login():
         else:
             authorized=False
             login = request.form.get('login')
+            if login == None:
+                login = ''
         return render_template('/lab4/login.html', authorized=authorized, login=login)
     
     login = request.form.get('login')
@@ -141,7 +143,8 @@ def login():
             return redirect('/lab4/login')
     
     error = 'Неверные логин и/или пароль'
-    return render_template('/lab4/login.html', error=error, authorized=False)
+    login = request.form.get('login')
+    return render_template('/lab4/login.html', error=error, authorized=False, login=login)
     
 
 @lab4.route('/lab4/logout', methods=['POST'])
