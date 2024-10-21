@@ -129,8 +129,7 @@ def login():
             login = session['login']
         else:
             authorized=False
-            # login = ''
-            login = session['login']
+            login = request.form.get('login')
         return render_template('/lab4/login.html', authorized=authorized, login=login)
     
     login = request.form.get('login')
