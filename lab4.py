@@ -135,7 +135,7 @@ def login():
                 login = ''
                 errors['login'] = 'Не введен логин'
             
-        return render_template('/lab4/login.html', authorized=authorized, login=login, error=error)
+        return render_template('/lab4/login.html', authorized=authorized, login=login, errors=errors)
     
     login = request.form.get('login')
     password = request.form.get('password')
