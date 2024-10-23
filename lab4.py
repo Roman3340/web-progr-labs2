@@ -156,7 +156,7 @@ def login():
                 session['user_name'] = user['name']  # Сохраняем имя в сессии
                 return redirect('/lab4/login')
 
-        # Если логин или пароль неверные
+        # Если логин и/или пароль неверные
         error = 'Неверные логин и/или пароль'
         return render_template('/lab4/login.html', authorized=False, errors=errors, error=error)
 
