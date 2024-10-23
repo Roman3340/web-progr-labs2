@@ -5,7 +5,7 @@
 {% block main %}
 
     {% if authorized %}
-        <h1>Добро пожаловать, {{ login }}!</h1>
+        <h1>Добро пожаловать, {{ user_name }}!</h1>  <!-- Выводим имя пользователя -->
         <div>
             <form action="/lab4/logout" method="post">
                 <button class="button">Выход</button>
@@ -17,7 +17,7 @@
         <form method="post">
             <div>
                 <label for="login">Пользователь:</label>
-                <input type="text" class="inputC" id="login" name="login" value='{{ login }}'>
+                <input type="text" class="inputC" id="login" name="login" value="{{ request.form.get('login', '') }}">
                 {% if errors.get('login') %}
                     <span class="error">{{ errors.get('login') }}</span>
                 {% endif %}
@@ -29,11 +29,12 @@
                     <span class="error">{{ errors.get('password') }}</span>
                 {% endif %}
             </div>
-            <div> {{ error }}</div>
+            <div>{{ error }}</div>
             <div>
                 <button type="submit" class="button">Войти</button>
                 <button type="reset" class="button">Отмена</button>
             </div>
         </form>
     {% endif %}
+
 {% endblock %}
