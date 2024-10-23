@@ -133,43 +133,32 @@ def login():
             login = request.form.get('login')
             if login == None:
                 login = ''
-                errors['login'] = 'Не введен логин'
+                # errors['login'] = 'Не введен логин'
             
         return render_template('/lab4/login.html', authorized=authorized, login=login, errors=errors)
-    
-
-    login = request.form.get('login')
-    password = request.form.get('password')
-
-    if login == None:
-        errors['login'] = 'Не введен логин'
-        return render_template('/lab4/login.html', authorized=False, errors=errors)
-    if password == None:
-        errors['password'] = 'Не введен пароль'
-        return render_template('/lab4/login.html', authorized=False, errors=errors)
-    
     else:
 
-        for user in users:
-
-            if login == user['login'] and password == user['password']:
-                session['login'] = login
-                return redirect('/lab4/login')
-        
-        error = 'Неверные логин и/или пароль'
         login = request.form.get('login')
-        return render_template('/lab4/login.html', error=error, authorized=False, login=login)
+        password = request.form.get('password')
 
+        if login == None:
+            errors['login'] = 'Не введен логин'
+            return render_template('/lab4/login.html', authorized=False, errors=errors)
+        elif password == None:
+            errors['password'] = 'Не введен пароль'
+            return render_template('/lab4/login.html', authorized=False, errors=errors)
+        
+        else:
 
-    errors = {}
-    user = request.args.get('user')
-    if user == '':
-        errors['user'] = 'Заполните поле!'
+            for user in users:
 
-    age = request.args.get('age')
-    if age == '':
-        errors['age'] = 'Заполните поле!'
-    sex = request.args.get('sex')
+                if login == user['login'] and password == user['password']:
+                    session['login'] = login
+                    return redirect('/lab4/login')
+            
+            error = 'Неверные логин и/или пароль'
+            login = request.form.get('login')
+            return render_template('/lab4/login.html', error=error, authorized=False, login=login)
     
 
 @lab4.route('/lab4/logout', methods=['POST'])
