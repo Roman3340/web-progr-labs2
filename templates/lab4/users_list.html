@@ -11,14 +11,18 @@
                 <strong>Логин:</strong> {{ user.login }} | <strong>Имя:</strong> {{ user.name }}
                 {% if user.login == current_user %}
                     <!-- Кнопки для редактирования и удаления -->
-                    <form method="POST" action="/lab4/edit_user">
-                        <input type="hidden" class="inputC" name="login" value="{{ user.login }}">
-                        <button class="button" type="submit">Редактировать</button>
-                    </form>
-                    <form method="POST" action="/lab4/delete_user">
-                        <input type="hidden" class="inputC" name="login" value="{{ user.login }}">
-                        <button type="submit" class="button" style="color: red;">Удалить</button>
-                    </form>
+                    <div class="buttons-users">
+                        <form method="POST" action="/lab4/edit_user">
+                            <input type="hidden" class="inputC" name="login" value="{{ user.login }}">
+                            <button class="button" type="submit" style="width: 200px;">Редактировать</button>
+                        </form>
+                        <form method="POST" action="/lab4/delete_user">
+                            <input type="hidden" class="inputC" name="login" value="{{ user.login }}">
+                            <button type="submit" class="button" style="color: red;" style="width: 200px;">Удалить</button>
+                        </form>
+                        <br>
+                    </div>
+                    
                 {% endif %}
             </li>
         {% endfor %}

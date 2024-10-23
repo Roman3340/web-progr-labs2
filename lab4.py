@@ -282,7 +282,7 @@ def register():
 
         # Если есть ошибки, возвращаем страницу с ошибками
         if errors:
-            return render_template('register.html', errors=errors)
+            return render_template('/lab4/register.html', errors=errors)
 
         # Если ошибок нет, добавляем нового пользователя в список
         users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
