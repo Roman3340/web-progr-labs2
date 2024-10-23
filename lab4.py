@@ -123,6 +123,7 @@ users = [
 
 @lab4.route('/lab4/login', methods=['GET', 'POST'])
 def login():
+    errors = {}
     if request.method == 'GET':
         if 'login' in session:
             authorized=True
@@ -132,7 +133,9 @@ def login():
             login = request.form.get('login')
             if login == None:
                 login = ''
-        return render_template('/lab4/login.html', authorized=authorized, login=login)
+                errors['login'] = 'Не введен логин'
+            
+        return render_template('/lab4/login.html', authorized=authorized, login=login, error=error)
     
     login = request.form.get('login')
     password = request.form.get('password')
@@ -145,6 +148,17 @@ def login():
     error = 'Неверные логин и/или пароль'
     login = request.form.get('login')
     return render_template('/lab4/login.html', error=error, authorized=False, login=login)
+
+
+    errors = {}
+    user = request.args.get('user')
+    if user == '':
+        errors['user'] = 'Заполните поле!'
+
+    age = request.args.get('age')
+    if age == '':
+        errors['age'] = 'Заполните поле!'
+    sex = request.args.get('sex')
     
 
 @lab4.route('/lab4/logout', methods=['POST'])
