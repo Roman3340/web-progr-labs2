@@ -202,3 +202,53 @@ def fridge():
                 error = "Ошибка: введите числовое значение температуры"
 
     return render_template('/lab4/fridge.html', error=error, temperature_message=temperature_message, snowflakes=snowflakes)
+
+
+@lab4.route('/lab4/grain_order', methods=['GET', 'POST'])
+def grain_order():
+    grains = {
+        'barley': {'name': 'ячмень', 'price': 12345},
+        'oats': {'name': 'овёс', 'price': 8522},
+        'wheat': {'name': 'пшеница', 'price': 8722},
+        'rye': {'name': 'рожь', 'price': 14111}
+    }
+    
+    error = None
+    success_message = None
+    discount_message = None
+
+    if request.method == 'POST':
+        grain_type = request.form.get('grain_type')
+        weight = request.form.get('weight')
+
+        # Проверяем наличие веса
+        if not weight:
+            error = "Ошибка: не указан вес."
+        else:
+            try:
+                weight = float(weight)
+                if weight <= 0:
+                    error = "Ошибка: вес должен быть больше 0."
+                elif weight > 500:
+                    error = "Ошибка: такого объёма сейчас нет в наличии."
+                else:
+                    # Получаем цену за выбранное зерно
+                    grain_info = grains.get(grain_type)
+                    if not grain_info:
+                        error = "Ошибка: неверный тип зерна."
+                    else:
+                        price_per_ton = grain_info['price']
+                        total_price = weight * price_per_ton
+
+                        # Применяем скидку за большой объем
+                        if weight > 50:
+                            discount = total_price * 0.10
+                            total_price -= discount
+                            discount_message = f"Применена скидка 10% за объём. Размер скидки: {discount:.2f} руб."
+
+                        # Формируем сообщение об успешном заказе
+                        success_message = f"Заказ успешно сформирован. Вы заказали {grain_info['name']}. Вес: {weight:.2f} т. Сумма к оплате: {total_price:.2f} руб."
+            except ValueError:
+                error = "Ошибка: введите корректное числовое значение веса."
+
+    return render_template('/lab4/grain_order.html', error=error, success_message=success_message, discount_message=discount_message)
