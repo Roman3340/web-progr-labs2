@@ -341,4 +341,4 @@ def edit_user():
     # GET-запрос: выводим форму редактирования
     user_login = session['login']
     user = next(user for user in users if user['login'] == user_login)
-    return render_template('/lab4/edit_user.html', user_name=new_name, authorized=True)
+    return render_template('/lab4/edit_user.html')
