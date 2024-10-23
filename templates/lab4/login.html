@@ -18,12 +18,16 @@
             <div>
                 <label for="login">Пользователь:</label>
                 <input type="text" class="inputC" id="login" name="login" value='{{ login }}'>
-                <span class="error">{{errors.get('login')}}</span>
+                {% if errors.get('login') %}
+                    <span class="error">{{ errors.get('login') }}</span>
+                {% endif %}
             </div>
             <div>
                 <label for="password">Пароль:</label>
                 <input type="password" class="inputC" id="password" name="password">
-                <span class="error">{{errors.get('password')}}</span>
+                {% if errors.get('password') %}
+                    <span class="error">{{ errors.get('password') }}</span>
+                {% endif %}
             </div>
             <div> {{ error }}</div>
             <div>
