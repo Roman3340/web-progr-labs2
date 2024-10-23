@@ -286,7 +286,7 @@ def register():
 
         # Если ошибок нет, добавляем нового пользователя в список
         users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
-        return redirect('/lab4/login')
+        return redirect('/lab4/login', name=name)
 
     return render_template('/lab4/register.html', errors=errors)
 
@@ -341,4 +341,4 @@ def edit_user():
     # GET-запрос: выводим форму редактирования
     user_login = session['login']
     user = next(user for user in users if user['login'] == user_login)
-    return render_template('/lab4/edit_user.html', user=user)
+    return render_template('/lab4/edit_user.html', user_name=new_name, authorized=True)
