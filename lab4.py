@@ -204,7 +204,7 @@ def fridge():
     return render_template('/lab4/fridge.html', error=error, temperature_message=temperature_message, snowflakes=snowflakes)
 
 
-@lab4.route('/lab4/grain_order', methods=['GET', 'POST'])
+@lab4.route('/lab4/grain-order', methods=['GET', 'POST'])
 def grain_order():
     grains = {
         'barley': {'name': 'ячмень', 'price': 12345},
@@ -251,4 +251,4 @@ def grain_order():
             except ValueError:
                 error = "Ошибка: введите корректное числовое значение веса."
 
-    return render_template('/lab4/grain_order.html', error=error, success_message=success_message, discount_message=discount_message)
+    return render_template('/lab4/grain-order.html', error=error, success_message=success_message, discount_message=discount_message)
