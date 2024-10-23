@@ -288,7 +288,7 @@ def register():
         users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
         return redirect('/lab4/login', user_name=name, authorized=True)
 
-    return render_template('/lab4/register.html', errors=errors)
+    # return render_template('/lab4/register.html', errors=errors)
 
 
 @lab4.route('/lab4/users')
