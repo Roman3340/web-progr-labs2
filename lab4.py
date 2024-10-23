@@ -260,7 +260,10 @@ def grain_order():
 def register():
     errors = {}
 
-    if request.method == 'POST':
+    if request.method == 'GET':
+         return render_template('/lab4/register.html', errors=errors)
+
+    elif request.method == 'POST':
         login = request.form.get('login', '').strip()
         password = request.form.get('password', '').strip()
         name = request.form.get('name', '').strip()
