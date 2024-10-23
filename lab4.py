@@ -137,17 +137,28 @@ def login():
             
         return render_template('/lab4/login.html', authorized=authorized, login=login, errors=errors)
     
+
     login = request.form.get('login')
     password = request.form.get('password')
 
-    for user in users:
-        if login == user['login'] and password == user['password']:
-            session['login'] = login
-            return redirect('/lab4/login')
+    if login == None:
+        errors['login'] = 'Не введен логин'
+        return render_template('/lab4/login.html', authorized=False, errors=errors)
+    if password == None:
+        errors['password'] = 'Не введен пароль'
+        return render_template('/lab4/login.html', authorized=False, errors=errors)
     
-    error = 'Неверные логин и/или пароль'
-    login = request.form.get('login')
-    return render_template('/lab4/login.html', error=error, authorized=False, login=login)
+    else:
+
+        for user in users:
+
+            if login == user['login'] and password == user['password']:
+                session['login'] = login
+                return redirect('/lab4/login')
+        
+        error = 'Неверные логин и/или пароль'
+        login = request.form.get('login')
+        return render_template('/lab4/login.html', error=error, authorized=False, login=login)
 
 
     errors = {}
