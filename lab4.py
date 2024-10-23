@@ -336,7 +336,7 @@ def edit_user():
                     user['password'] = new_password
 
         session['user_name'] = new_name  # Обновляем имя в сессии, если его изменили
-        return redirect('/users')
+        return redirect('/lab4/users')
 
     # GET-запрос: выводим форму редактирования
     user_login = session['login']
