@@ -252,3 +252,93 @@ def grain_order():
                 error = "Ошибка: введите корректное числовое значение веса."
 
     return render_template('/lab4/grain-order.html', error=error, success_message=success_message, discount_message=discount_message)
+
+
+
+
+@lab4.route('/lab4/register', methods=['GET', 'POST'])
+def register():
+    errors = {}
+
+    if request.method == 'POST':
+        login = request.form.get('login', '').strip()
+        password = request.form.get('password', '').strip()
+        name = request.form.get('name', '').strip()
+        gender = request.form.get('gender', '').strip()
+
+        if not login:
+            errors['login'] = 'Не введен логин'
+        if not password:
+            errors['password'] = 'Не введен пароль'
+        if not name:
+            errors['name'] = 'Не введено имя'
+        if gender not in ['male', 'female']:
+            errors['gender'] = 'Выберите пол'
+
+        # Проверяем, что логин уникален
+        for user in users:
+            if user['login'] == login:
+                errors['login'] = 'Логин уже существует'
+
+        # Если есть ошибки, возвращаем страницу с ошибками
+        if errors:
+            return render_template('register.html', errors=errors)
+
+        # Если ошибок нет, добавляем нового пользователя в список
+        users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
+        return redirect('/lab4/login')
+
+    return render_template('/lab4/register.html', errors=errors)
+
+
+@lab4.route('/lab4/users')
+def users_list():
+    if 'login' not in session:
+        return redirect('/lab4/login')  # Перенаправляем на логин, если не авторизован
+
+    return render_template('/lab4/users_list.html', users=users, current_user=session['login'])
+
+
+@lab4.route('/lab4/delete_user', methods=['POST'])
+def delete_user():
+    if 'login' not in session:
+        return redirect('/lab4/login')
+
+    login_to_delete = request.form.get('login')
+
+    global users
+    users = [user for user in users if user['login'] != login_to_delete]
+
+    # Удаляем сессию, если пользователь сам себя удалил
+    if session['login'] == login_to_delete:
+        session.pop('login', None)
+        session.pop('user_name', None)
+        return redirect('/lab4/login')
+
+    return redirect('/lab4/users')
+
+
+@lab4.route('/lab4/edit_user', methods=['GET', 'POST'])
+def edit_user():
+    if 'login' not in session:
+        return redirect('/lab4/login')
+
+    if request.method == 'POST':
+        login = request.form.get('login')
+        new_name = request.form.get('name', '').strip()
+        new_password = request.form.get('password', '').strip()
+
+        for user in users:
+            if user['login'] == login:
+                if new_name:
+                    user['name'] = new_name
+                if new_password:
+                    user['password'] = new_password
+
+        session['user_name'] = new_name  # Обновляем имя в сессии, если его изменили
+        return redirect('/users')
+
+    # GET-запрос: выводим форму редактирования
+    user_login = session['login']
+    user = next(user for user in users if user['login'] == user_login)
+    return render_template('/lab4/edit_user.html', user=user)

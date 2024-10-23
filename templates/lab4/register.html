@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block lab %}Регистрация{% endblock %}
+
+{% block main %}
+    <h1>Регистрация</h1>
+    <form method="post">
+        <div>
+            <label for="login">Логин:</label>
+            <input type="text" id="login" name="login" value="">
+            {% if errors.get('login') %}
+                <span class="error">{{ errors['login'] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" value="">
+            {% if errors.get('password') %}
+                <span class="error">{{ errors['password'] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="">
+            {% if errors.get('name') %}
+                <span class="error">{{ errors['name'] }}</span>
+            {% endif %}
+        </div>
+        <div>
+            <label for="gender">Пол:</label>
+            <select id="gender" name="gender">
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+            </select>
+            {% if errors.get('gender') %}
+                <span class="error">{{ errors['gender'] }}</span>
+            {% endif %}
+        </div>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+{% endblock %}
