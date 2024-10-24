@@ -289,8 +289,8 @@ def register():
 
         # Если ошибок нет, добавляем нового пользователя в список
         users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
-    session['login'] = user['login']
-    session['user_name'] = user['name']  # Сохраняем имя в сессии
+    session['login'] = login
+    session['user_name'] = name  # Сохраняем имя в сессии
     return redirect('/lab4/login')
         # return redirect('/lab4/login', user_name=name, authorized=True, login=login)
 
