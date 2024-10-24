@@ -291,7 +291,7 @@ def register():
         users.append({'login': login, 'password': password, 'name': name, 'gender': gender})
         session['login'] = user['login']
         session['user_name'] = user['name']  # Сохраняем имя в сессии
-        return redirect('/lab4/login')
+        return redirect('/lab4/login', user_name=name, authorized=True, login=login)
         # return redirect('/lab4/login', user_name=name, authorized=True, login=login)
 
     # return render_template('/lab4/register.html', errors=errors)
