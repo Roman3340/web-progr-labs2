@@ -350,6 +350,7 @@ def save_user():
     login = request.form.get('login')
     new_name = request.form.get('name', '').strip()
     new_password = request.form.get('password', '').strip()
+    
 
     # Обновляем данные пользователя
     for user in users:
