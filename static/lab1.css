@@ -175,3 +175,12 @@ option {
     padding: 0 20px;
     margin-bottom: 15px;
 }
+
+
+.button.buttons-users {
+    display: inline-block;
+}
+
+.form-reg {
+    display: inline-block;
+}
