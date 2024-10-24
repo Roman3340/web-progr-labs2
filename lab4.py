@@ -329,25 +329,35 @@ def edit_user():
     if 'login' not in session:
         return redirect('/lab4/login')
 
-    # Найдём текущего пользователя
-    user_login = session['login']
-    user = next((u for u in users if u['login'] == user_login), None)
-
-    if not user:
-        return redirect('/lab4/users')  # На случай, если пользователя не нашли
-
     if request.method == 'POST':
-        new_name = request.form.get('name', '').strip()
-        new_password = request.form.get('password', '').strip()
+        login = request.form.get('login')
+        user = next((u for u in users if u['login'] == login), None)
 
-        # Обновляем данные пользователя, если они были введены
-        if new_name:
-            user['name'] = new_name
-            session['user_name'] = new_name  # Обновляем имя в сессии
-        if new_password:
-            user['password'] = new_password
+        if not user:
+            return redirect('/lab4/users')  # Перенаправляем, если пользователя нет
 
-        return redirect('/lab4/users')  # Перенаправляем на список пользователей
+        # Переход на форму редактирования с данными пользователя
+        return render_template('/lab4/edit_user.html', user=user)
 
-    # GET-запрос: Отобразим форму редактирования с текущими данными
-    return render_template('/lab4/edit_user.html', user=user)
+    # Если это GET-запрос (на случай прямого перехода)
+    return redirect('/lab4/users')
+
+@lab4.route('/lab4/save_user', methods=['POST'])
+def save_user():
+    if 'login' not in session:
+        return redirect('/lab4/login')
+
+    login = request.form.get('login')
+    new_name = request.form.get('name', '').strip()
+    new_password = request.form.get('password', '').strip()
+
+    # Обновляем данные пользователя
+    for user in users:
+        if user['login'] == login:
+            if new_name:
+                user['name'] = new_name
+                session['user_name'] = new_name  # Обновляем имя в сессии
+            if new_password:
+                user['password'] = new_password
+
+    return redirect('/lab4/users')  # Перенаправляем на список пользователей

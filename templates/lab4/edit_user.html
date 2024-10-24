@@ -4,7 +4,8 @@
 
 {% block main %}
     <h1>Редактирование данных</h1>
-    <form method="POST">
+    <form method="POST" action="/lab4/save_user">
+        <input type="hidden" name="login" value="{{ user.login }}">
         <div>
             <label for="name">Имя:</label>
             <input type="text" id="name" name="name" value="{{ user.name }}" class="inputC">
@@ -19,4 +20,5 @@
         </div>
     </form>
 {% endblock %}
+
 
