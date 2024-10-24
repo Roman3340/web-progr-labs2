@@ -3,17 +3,20 @@
 {% block lab %}Редактирование профиля{% endblock %}
 
 {% block main %}
-    <h1>Редактирование профиля</h1>
-
-    <form method="post">
+    <h1>Редактирование данных</h1>
+    <form method="POST">
         <div>
             <label for="name">Имя:</label>
-            <input type="text" class="inputC" id="name" name="name" value="{{ user['name'] }}">
+            <input type="text" id="name" name="name" value="{{ user.name }}" class="inputC">
         </div>
         <div>
-            <label for="password">Новый пароль (оставьте пустым, если не хотите менять):</label>
-            <input type="password" class="inputC" id="password" name="password">
+            <label for="password">Новый пароль:</label>
+            <input type="password" id="password" name="password" class="inputC">
         </div>
-        <button class="button" type="submit">Сохранить изменения</button>
+        <div>
+            <button type="submit" class="button">Сохранить</button>
+            <a href="/lab4/users" class="button">Отмена</a>
+        </div>
     </form>
 {% endblock %}
+
