@@ -7,12 +7,12 @@
     {% if authorized %}
         <h1>Добро пожаловать, {{ user_name }}!</h1>  <!-- Выводим имя пользователя -->
         <div>
-            <form action="/lab4/logout" method="post">
-                <button class="button">Выход</button>
+            <form action="/lab4/logout" method="post" class="form-reg">
+                <button class="button button-users">Выход</button>
             </form>
             <!-- Кнопка перехода на страницу со списком пользователей -->
-            <form action="/lab4/users" method="get" style="display: inline;">
-                <button class="button" style="width: 250px;">Все пользователи</button>
+            <form action="/lab4/users" method="get" style="display: inline;" class="form-reg">
+                <button class="button button-users" style="width: 250px;">Все пользователи</button>
             </form>
         </div>
     {% else %}
