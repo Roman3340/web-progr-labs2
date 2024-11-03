@@ -59,6 +59,21 @@ a {
     font-size: 20px;
 }
 
+.ol5laba {
+    display: flex;
+}
+
+.a5laba {
+    background-color: #2b2424;
+    color: #fff;
+    border: 0;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .strelka {
     width: 30px;
     height: auto;
