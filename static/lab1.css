@@ -61,6 +61,8 @@ a {
 
 .ol5laba {
     display: flex;
+    justify-content: space-between;
+    list-style: none;
 }
 
 .a5laba {
@@ -68,8 +70,7 @@ a {
     color: #fff;
     border: 0;
     border-radius: 20px;
-    width: 100px;
-    height: 40px;
+    padding: 10px 15px;
     font-size: 15px;
     cursor: pointer;
 }
