@@ -35,5 +35,5 @@ def register():
     conn.commit()
     cur.close()
     conn.close()
-    return render_template('lab5/success.html', login=login)
+    return render_template('lab5/success.html', login=login, error=None)
     
