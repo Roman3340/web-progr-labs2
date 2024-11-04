@@ -160,6 +160,21 @@ option {
     background-color: #665d5d;
 }
 
+.btnGray {
+    background-color: rgb(99, 95, 95);
+    color: #fff;
+    border: 0;
+    border-radius: 15px;
+    min-width: 100px;
+    padding: 10px 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btnGray:hover {
+    background-color: rgb(76, 73, 73);
+}
+
 .drinkR {
     background-color: black;
 }
