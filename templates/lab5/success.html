@@ -3,11 +3,10 @@
 {% block lab %}Лабораторная работа 5{% endblock %}
 
 {% block main %}
-    <h1>База знаний</h1>
+    <h1>Вы успешно зарегистрировались!</h1>
+    <div>Ваш логин: {{ login }}</div>
     <ol class="ol5laba">
-        <li><a href="/lab5/list" class="a5laba">Список статей</a></li>
-        <li><a href="/lab5/create" class="a5laba">Создать статью</a></li>
-        <li>{{ login }}</li>
+        <li><a href="/lab5" class="a5laba">Перейти в базу знаний</a></li>
     </ol>
 
 {% endblock %}

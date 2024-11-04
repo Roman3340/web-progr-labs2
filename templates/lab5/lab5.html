@@ -5,11 +5,12 @@
 {% block main %}
     <h1>База знаний</h1>
     <ol class="ol5laba">
-        <li><a href="/lab5/login" class="a5laba">Вход</a></li>
-        <li><a href="/lab5/register" class="a5laba">Регистрация</a></li>
+        {% if login == 'Anonymous' %}
+            <li><a href="/lab5/login" class="a5laba">Вход</a></li>
+            <li><a href="/lab5/register" class="a5laba">Регистрация</a></li>
+        {% endif %}
         <li><a href="/lab5/list" class="a5laba">Список статей</a></li>
         <li><a href="/lab5/create" class="a5laba">Создать статью</a></li>
-        <li>Anonymous</li>
+        <li>{{ login }}</li>
     </ol>
-
 {% endblock %}
