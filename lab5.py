@@ -109,6 +109,10 @@ def create():
     title = request.form.get('title')
     article_text = request.form.get('article_text')
 
+    if not (title or article_text):
+        return render_template('lab5/create_article.html', error='Заполните все поля')
+    
+
     conn, cur = db_connect()
 
     if current_app.config['DB_TYPE'] == 'postgres':
