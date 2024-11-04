@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, session
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from werkzeug.security import check_password_hash, generate_password_hash
 lab5 = Blueprint('lab5', __name__)
 
 @lab5.route('/lab5/')
@@ -43,7 +44,9 @@ def register():
         db_close(conn, cur)
         return render_template('lab5/register.html', error='Такой пользователь уже существует')
     
-    cur.execute(f"INSERT INTO users (login_user, password_user) VALUES ('{login}', '{password}');")
+    password_hash = generate_password_hash(password)
+
+    cur.execute(f"INSERT INTO users (login_user, password_user) VALUES ('{login}', '{password_hash}');")
     db_close(conn, cur)
     return render_template('lab5/success.html', login=login, error=None)
     
@@ -67,7 +70,7 @@ def login():
         return render_template('lab5/login.html', 
                                error='Логин и/или пароль неверны')
     
-    if user['password_user'] != password:
+    if not check_password_hash(user['password_user'], password):
         db_close(conn, cur)
         return render_template('lab5/login.html', 
                                error='Логин и/или пароль неверны')
@@ -75,3 +78,26 @@ def login():
     session['login'] = login
     db_close(conn, cur)
     return render_template('lab5/success_login.html', login=login)
+
+@lab5.route('/lab5/create', methods = ['GET', 'POST'])
+def create():
+    login = session.get('login')
+    if not login:
+        return redirect('/lab5/login')
+    
+    if request.method == 'GET':
+        return render_template('lab5/create_article.html')
+    
+    title = request.form.get('title')
+    article_text = request.form.get('article_text')
+
+    conn, cur = db_connect()
+
+    cur.execute("SELECT * FROM users WHERE login_user=%s;", (login, ))
+    login_id = cur.fetchone()["id"]
+
+    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({login_id}, '{title}', '{article_text}')")
+    # cur.fetchone()
+
+    db_close(conn, cur)
+    return redirect('/lab5')

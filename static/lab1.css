@@ -216,3 +216,10 @@ option {
 .form-reg {
     display: inline-block;
 }
+
+.taBlack {
+    background-color: #1f1e1e;
+    color: #fff;
+    min-width: 330px;
+    min-height: 115px;
+}
