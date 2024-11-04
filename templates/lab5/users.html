@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{% block main %}
+    <h1>Список пользователей</h1>
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <li>{{ user['login_user'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пользователей не найдено</p>
+    {% endif %}
+{% endblock %}

@@ -142,23 +142,26 @@ def list():
     login = session.get('login')
     if not login:
         return redirect('/lab5/login')
-    
+
     conn, cur = db_connect()
 
+    # Получаем ID пользователя
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("SELECT id FROM users WHERE login_user=%s;", (login, ))
     else:
         cur.execute("SELECT id FROM users WHERE login_user=?;", (login, ))
     login_id = cur.fetchone()["id"]
 
+    # Запрашиваем статьи пользователя, сортируя «любимые» статьи первыми
     if current_app.config['DB_TYPE'] == 'postgres':
-        cur.execute("SELECT * FROM articles WHERE user_id=%s;", (login_id, ))
+        cur.execute("SELECT * FROM articles WHERE user_id=%s ORDER BY is_favorite DESC, id ASC;", (login_id, ))
     else:
-        cur.execute("SELECT * FROM articles WHERE user_id=?;", (login_id, ))
+        cur.execute("SELECT * FROM articles WHERE user_id=? ORDER BY is_favorite DESC, id ASC;", (login_id, ))
+    
     articles = cur.fetchall()
-
     db_close(conn, cur)
-    return render_template('/lab5/articles.html', articles=articles)
+
+    return render_template('lab5/articles.html', articles=articles)
 
 
 @lab5.route('/lab5/delete_article', methods=['POST'])
@@ -220,3 +223,39 @@ def edit_article(article_id):
     db_close(conn, cur)
 
     return redirect('/lab5/list')
+
+
+@lab5.route('/lab5/users')
+def list_users():
+    login = session.get('login')
+    if not login:
+        return redirect('/lab5/login')
+
+    conn, cur = db_connect()
+    
+    # Получаем логины всех зарегистрированных пользователей
+    if current_app.config['DB_TYPE'] == 'postgres':
+        cur.execute("SELECT login_user FROM users;")
+    else:
+        cur.execute("SELECT login_user FROM users;")
+    
+    users = cur.fetchall()
+    db_close(conn, cur)
+
+    return render_template('lab5/users.html', users=users)
+
+
+@lab5.route('/lab5/public_articles')
+def public_articles():
+    conn, cur = db_connect()
+
+    # Запрашиваем все публичные статьи
+    if current_app.config['DB_TYPE'] == 'postgres':
+        cur.execute("SELECT * FROM articles WHERE is_public=True ORDER BY is_favorite DESC;")
+    else:
+        cur.execute("SELECT * FROM articles WHERE is_public=1 ORDER BY is_favorite DESC;")
+    
+    public_articles = cur.fetchall()
+    db_close(conn, cur)
+
+    return render_template('lab5/public_articles.html', articles=public_articles)

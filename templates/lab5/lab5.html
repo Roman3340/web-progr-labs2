@@ -11,10 +11,12 @@
         {% endif %}
         <li><a href="/lab5/list" class="a5laba">Список статей</a></li>
         <li><a href="/lab5/create" class="a5laba">Создать статью</a></li>
+        <li><a href="/lab5/public_articles" class="a5laba">Публичные статьи</a></li>
         {% if login != 'Anonymous' %}
-            <form action="/lab5/logout" method="post" class="form-reg">
-                <button class="button button-users">Выход</button>
-            </form>
+            <li><a href="/lab5/users" class="a5laba">Все пользователи</a></li>
+            <li><form action="/lab5/logout" method="post" class="form-reg">
+                <button class="button">Выход</button>
+            </form></li>
         {% endif %}
         <li>{{ login }}</li>
     </ol>
