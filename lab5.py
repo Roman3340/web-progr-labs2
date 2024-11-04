@@ -25,13 +25,13 @@ def register():
     )
     cur = conn.cursor()
 
-    cur.execute(f"SELECT login FROM users WHERE login='{login}';")
+    cur.execute(f"SELECT login_user FROM users WHERE login_user='{login}';")
     if cur.fetchone():
         cur.close()
         conn.close()
         return render_template('lab5/register.html', error='Такой пользователь уже существует')
     
-    cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password}');")
+    cur.execute(f"INSERT INTO users (login_user, password_user) VALUES ('{login}', '{password}');")
     conn.commit()
     cur.close()
     conn.close()
