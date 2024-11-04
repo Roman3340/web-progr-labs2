@@ -4,10 +4,19 @@
 
 {% block main %}
     <h1>Ваши статьи</h1>
-    
-    {% for article in articles %}
-        <h2> {{ article['title'] }}</h2>
-        <blockquote> {{ article['article_text'] }}</blockquote>
-    {% endfor %}
-    
+    {% if articles %}
+        {% for article in articles %}
+            <h2> {{ article['title'] }}</h2>
+            <blockquote> {{ article['article_text'] }}</blockquote> <br>
+            <form action="/lab5/edit_article/{{ article['id'] }}" method="get" class="form-reg">
+                <button class="button button-users">Редактировать статью</button>
+            </form>
+            <form action="/lab5/delete_article" method="post" class="form-reg">
+                <input type="hidden" name="article_id" value="{{ article['id'] }}">
+                <button class="button button-users">Удалить статью</button>
+            </form>
+        {% endfor %}
+    {% else %}
+        <h2>У вас нет ещё ни одной статьи</h2>
+    {% endif %}
 {% endblock %}
