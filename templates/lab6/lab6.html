@@ -27,13 +27,16 @@ function getOfficeList() {
         for(let i = 0; i < office_list.length; i++) {
             const office = office_list[i];
             const li = document.createElement('li');
+
+             // Очищаем символы, оставляем только цифры и точку
+             const price = office.price.replace(/[^\d,]/g, '');
             
             // Проверяем, арендован ли офис
             if (office.tenant) {
                 li.innerText = `${office.number}: Арендован пользователем ${office.tenant}`;
-                totalCost += office.price;
+                totalCost += parseFloat(price.replace(',', '.'));
             } else {
-                li.innerText = `${office.number}: свободен. Цена: ${office.price}`;
+                li.innerText = `${office.number}: свободен. Цена: ${price}`;
             }
 
 
@@ -134,7 +137,6 @@ function cancel(officeNumber) {
             }
         }
         else {
-            document.getElementById('office-list').innerHTML = '';
             getOfficeList();
         }
     })
