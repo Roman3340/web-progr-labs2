@@ -15,6 +15,7 @@ function fillFilmList () {
             let tdActions = document.createElement('td');
 
             tdTitle.innerText = films[i].title == films[i].title_ru ? '' : films[i].title;
+            tdTitle.style.color = films[i].title === films[i].title_ru ? '' : '#9b9b9b';
             tdTitleRus.innerText = films[i].title_ru;
             tdYear.innerText = films[i].year;
 
@@ -35,8 +36,8 @@ function fillFilmList () {
             tdActions.append(editButton);
             tdActions.append(delButton);
             
-            tr.append(tdTitle);
             tr.append(tdTitleRus);
+            tr.append(tdTitle);
             tr.append(tdYear);
             tr.append(tdActions);
 
