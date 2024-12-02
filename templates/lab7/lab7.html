@@ -66,6 +66,10 @@ button:hover {
     background-color: #2e2d2d;
 }
 
+.error-message {
+    color: red;
+}
+
 </style>
 {% endblock %}
 
@@ -115,6 +119,7 @@ button:hover {
         <label>
             Описание:
             <textarea id="description"></textarea>
+            <div id="description-error" class="error-message"></div>
         </label>
 
         <button class="inputC" onclick="sendFilm()">ОК</button>
