@@ -105,6 +105,12 @@ function sendFilm () {
     .then(function(errors) {
         if(errors.description)
             document.getElementById('description-error').innerText = errors.description;
+        if(errors.title)
+            document.getElementById('title-error').innerText = errors.title;
+        if(errors.title_ru)
+            document.getElementById('title-ru-error').innerText = errors.title_ru;
+        if(errors.year)
+            document.getElementById('year-error').innerText = errors.year;
     });
 }
 

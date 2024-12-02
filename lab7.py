@@ -78,8 +78,18 @@ def put_film(id):
     film = request.get_json()
     if film ['description'] == '':
         return {'description': 'Заполните описание'}, 400
+    elif len(film['description']) > 2000:
+        return {'description': 'Описание не должно превышать 2000 символов'}, 400
+    if not film.get('title') and not film.get('title_ru'):
+        return {'title': 'Заполните поля с названиями/только русское'}, 400
+    if not film.get('title_ru'):
+        return {'title_ru': 'Заполните русское название'}, 400
     if not film.get('title'):
         film['title'] = film['title_ru']
+    if not film.get('year'):
+        return {'year': 'Заполните год выпуска фильма'}, 400
+    elif int(film['year']) < 1895 or int(film['year']) > 2024:
+        return {'year': 'Введите правильный год (от 1895 до 2024)'}
     films[id] = film
     return films[id]
 
