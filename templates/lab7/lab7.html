@@ -4,6 +4,69 @@
 
 {% block script %}
 <script src="{{url_for('static', filename='lab7/main.js')}}"></script>
+<style>
+.modal {
+    z-index: 100;
+    box-shadow: 7px 7px 7px 12px rgba(0, 0, 0, 0.181);
+    background-color: #323232;
+    width: 500px;
+    left: 45%;
+    top: 220px;
+    margin-left: -200px;    
+    position: absolute;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    justify-items: center;
+    column-gap: 15px;
+    display: none;
+}
+.titleAdd {
+    font-size: 20px;
+    grid-column: 1 / 3;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.modal label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 7px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modal label p {
+    margin-bottom: 20px;
+}
+
+.modal label span {
+    font-size: 12px;
+    color:#9b9b9b;
+}
+
+.modal label textarea,
+.modal label input {
+    max-width: 170px;
+    height: 21px;
+}
+
+.modal button {
+    margin-top: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2e2d2d;
+}
+
+</style>
 {% endblock %}
 
 {% block main %}
@@ -26,5 +89,35 @@
 
     <div>
         <button onclick="addFilm()" class="inputC">Добавить фильм</button>
+    </div>
+
+    <div class="modal">
+        <div class="titleAdd">
+            Добавить фильм:
+        </div>
+        <input type="hidden" id="id">
+        <label>
+            <p>Название фильма на русском:</p>
+            <input type="text" id="title-ru">
+        </label>
+
+        <label>
+            Название фильма на оригинальном языке
+            <span><i>(если фильм русский, оставьте поле пустым):</i></span>
+            <input type="text" id="title">
+        </label>
+
+        <label>
+            Год выпуска:
+            <input type="number" id="year">
+        </label>
+
+        <label>
+            Описание:
+            <textarea id="description"></textarea>
+        </label>
+
+        <button class="inputC" onclick="sendFilm()">ОК</button>
+        <button class="inputC" onclick="cancel()">Отмена</button>
     </div>
 {% endblock %}
