@@ -6,7 +6,8 @@ function fillFilmList () {
     .then(function (films) {
         let tbody = document.getElementById('film-list');
         tbody.innerHTML = '';
-        for(let i = 0; i < films.length; i++) {
+        for (let i = 0; i < films.length; i++) {
+            let film = films[i]; 
             let tr = document.createElement('tr');
 
             let tdTitle = document.createElement('td');
@@ -14,23 +15,23 @@ function fillFilmList () {
             let tdYear = document.createElement('td');
             let tdActions = document.createElement('td');
 
-            tdTitle.innerText = films[i].title == films[i].title_ru ? '' : films[i].title;
-            tdTitle.style.color = films[i].title === films[i].title_ru ? '' : '#9b9b9b';
-            tdTitleRus.innerText = films[i].title_ru;
-            tdYear.innerText = films[i].year;
+            tdTitle.innerText = film.title === film.title_ru ? '' : film.title;
+            tdTitle.style.color = film.title === film.title_ru ? '' : '#9b9b9b';
+            tdTitleRus.innerText = film.title_ru;
+            tdYear.innerText = film.year;
 
             let editButton = document.createElement('button');
             editButton.className = 'inputC';
             editButton.innerText = 'Редактировать';
             editButton.onclick = function () {
-                editFilm(i);
+                editFilm(film.id);
             };
 
             let delButton = document.createElement('button');
             delButton.className = 'inputC';
             delButton.innerText = 'Удалить';
             delButton.onclick = function () {
-                deleteFilm(i, films[i].title_ru);
+                deleteFilm(film.id, film.title_ru);
             };
 
             tdActions.append(editButton);
@@ -43,8 +44,9 @@ function fillFilmList () {
 
             tbody.append(tr);
         }
-    })
+    });
 }
+
 
 function deleteFilm (id, title) {
     if (! confirm(`Вы точно хотите удалить фильм "${title}"?`))
@@ -58,6 +60,9 @@ function deleteFilm (id, title) {
 function showModal() {
     document.querySelector('div.modal').style.display = 'grid';
     document.getElementById('description-error').innerText = '';
+    document.getElementById('title-error').innerText = '';
+    document.getElementById('title-ru-error').innerText = '';
+    document.getElementById('year-error').innerText = '';
 }
 
 function hideModal () {
