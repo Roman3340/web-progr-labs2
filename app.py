@@ -14,6 +14,7 @@ from lab5 import lab5
 from lab6 import lab6
 from lab7 import lab7
 from lab8 import lab8
+from lab9 import lab9
 app = Flask(__name__)
 
 login_manager = LoginManager()
@@ -50,6 +51,7 @@ app.register_blueprint(lab5)
 app.register_blueprint(lab6)
 app.register_blueprint(lab7)
 app.register_blueprint(lab8)
+app.register_blueprint(lab9)
 
 
 app.secret_key = 'секретно-секретный секрет'
@@ -84,6 +86,7 @@ def menu():
             <li><a href="/lab6/">Шестая лабораторная</a></li>
             <li><a href="/lab7/">Седьмая лабораторная</a></li>
             <li><a href="/lab8/">Восьмая лабораторная</a></li>
+            <li><a href="/lab9/">Девятая лабораторная</a></li>
         </ul>
 
         <footer>
@@ -117,6 +120,7 @@ def lab_5():
 @app.route('/lab6/')
 def lab_6():
     return render_template('lab6/lab6.html')
+
 
 
 @app.errorhandler(404)

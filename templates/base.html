@@ -6,6 +6,9 @@
     <title>Роман Чукаев. {% block lab %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='lab1.css') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon.ico') }}">
+    {% if '/lab9/' in request.path %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles_newYear.css') }}">
+    {% endif %}
     <style>
         body{
             {% if request.cookies.get('color') %}
